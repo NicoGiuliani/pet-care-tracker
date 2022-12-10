@@ -1,0 +1,5 @@
+venv/
+app/migrations
+app/__pycache__/
+pet_care_tracker/__pycache__/
+db.sqlite3
