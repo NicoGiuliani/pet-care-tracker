@@ -1,6 +1,9 @@
 {% extends './base.html' %}
 {% block body %}
 <div class="card border-dark mb-3">
-  <form></form>
+  <orm method="POST" action="{% url 'add' %}">
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Add</button>
+  </form>
 </div>
 {% endblock %}
