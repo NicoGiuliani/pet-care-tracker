@@ -7,3 +7,6 @@ def index(request):
     'animals': Animal.objects.all()
   })
 
+def add(request):
+  return render(request, 'add.html')
+
