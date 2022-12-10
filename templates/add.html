@@ -1,7 +1,13 @@
 {% extends './base.html' %}
 {% block body %}
-<div class="card border-dark mb-3">
-  <orm method="POST" action="{% url 'add' %}">
+<div class="card border-dark col-8 mx-auto mb-3">
+  {% for message in messages %}
+    {% if message.tags == 'success' %}
+    <h5 class='col-10 mt-3 mx-auto' style="color:green">** {{message}} **</h5>
+    {% endif %}
+  {% endfor %}
+  <form method="POST" action="{% url 'add' %}" class="col-10 mx-auto my-4">
+    {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="btn btn-primary">Add</button>
   </form>

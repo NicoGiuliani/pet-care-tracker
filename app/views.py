@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib import messages
 from .models import Animal
 from .forms import AnimalForm
 
@@ -12,10 +13,10 @@ def add(request):
   if request.method == 'POST':
     form = AnimalForm(request.POST)
     if form.is_valid():
-      new_classification = form.cleaned_data['new_classification']
-      new_species = form.cleaned_data['new_species']
-      new_common_name = form.cleaned_data['new_common_name']
-      new_name = form.cleaned_data['new_name']
+      new_classification = form.cleaned_data['classification']
+      new_species = form.cleaned_data['species']
+      new_common_name = form.cleaned_data['common_name']
+      new_name = form.cleaned_data['name']
 
       new_animal = Animal(
         classification = new_classification,
@@ -25,6 +26,7 @@ def add(request):
       )
 
       new_animal.save()
+      messages.success(request, 'New animal saved successfully')
       return render(request, './add.html', {
         'form': AnimalForm,
         'success': True
@@ -34,6 +36,3 @@ def add(request):
   return render(request, './add.html', {
     'form': AnimalForm()
   })
-
-  return render(request, 'add.html')
-
