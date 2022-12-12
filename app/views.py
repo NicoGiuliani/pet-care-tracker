@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from .models import Animal
 from .forms import AnimalForm
 
@@ -36,3 +38,11 @@ def add(request):
   return render(request, './add.html', {
     'form': AnimalForm()
   })
+
+
+def delete(request):
+  if request.method == 'POST':
+    id = request.POST['id']
+    animal = Animal.objects.get(pk=id)
+    animal.delete()
+  return HttpResponseRedirect(reverse('index'))
