@@ -36,7 +36,8 @@ def add(request):
   else:
     form = AnimalForm()
   return render(request, './add.html', {
-    'form': AnimalForm()
+    'form': AnimalForm(),
+    'animals': Animal.objects.all()
   })
 
 
