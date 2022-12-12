@@ -46,3 +46,4 @@ def delete(request):
     animal = Animal.objects.get(pk=id)
     animal.delete()
   return HttpResponseRedirect(reverse('index'))
+
