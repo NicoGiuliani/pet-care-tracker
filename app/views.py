@@ -31,7 +31,8 @@ def add(request):
       messages.success(request, 'New animal saved successfully')
       return render(request, './add.html', {
         'form': AnimalForm,
-        'success': True
+        'animals': Animal.objects.all(),
+        'success': True,
       })
   else:
     form = AnimalForm()
@@ -48,3 +49,5 @@ def delete(request):
     animal.delete()
   return HttpResponseRedirect(reverse('index'))
 
+def edit(request):
+  pass

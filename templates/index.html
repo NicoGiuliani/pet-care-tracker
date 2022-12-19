@@ -1,18 +1,23 @@
 {% extends './base.html' %} {% block body %} {% for animal in animals %}
 <div class="card border-dark mb-3">
-  <form action="delete" method="POST">
-    {% csrf_token %}
-    <div class="card-header">{{ animal.classification }}</div>
-    <div class="card-body">
-      <h4 class="card-title">{{ animal.name | capfirst }}</h4>
-      <p class="card-title">
-        {{ animal.common_name | capfirst }}
-        <i>({{ animal.species | capfirst }})</i>
-      </p>
+  <div class="card-header">{{ animal.classification }}</div>
+  <div class="card-body">
+    <h4 class="card-title">{{ animal.name | capfirst }}</h4>
+    <p class="card-title">
+      {{ animal.common_name | capfirst }}
+      <i>({{ animal.species | capfirst }})</i>
+    </p>
+    <form action="edit" method="POST" class="me-1" style="float:left">
+      {% csrf_token %}
+      <input type="hidden" name="id" value={{ animal.id }}></input>
+      <input type="submit" value="Edit"></input>
+    </form>
+    <form action="delete" method="POST" class="me-1" style="float:left">
+      {% csrf_token %}
       <input type="hidden" name="id" value={{ animal.id }}></input>
       <input type="submit" value="Delete"></input>
-    </div>
-  </form>
+    </form>
+  </div>
 </div>
 {% endfor %} 
 {% endblock %}
