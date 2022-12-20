@@ -54,13 +54,14 @@ def edit(request, id):
     form = AnimalForm(request.POST, instance=animal)
     if form.is_valid():
       form.save()
+      messages.success(request, 'Record saved successfully')
       return render(request, 'edit.html', {
         'form': form,
         'success': True
       })
   else: 
     animal = Animal.objects.get(pk=id)
-    form = AnimalForm(request.POST, instance=animal)
+    form = AnimalForm(instance=animal)
   return render(request, 'edit.html', {
     'form': form
   })
