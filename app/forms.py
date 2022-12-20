@@ -22,7 +22,7 @@ class AnimalForm(forms.ModelForm):
       'name': 'Name',
     }
     widgets = {
-      'classification': forms.Select(choices=CLASSIFICATION_CHOICES, attrs={'class': 'form-control'}),
+      'classification': forms.Select(choices=CLASSIFICATION_CHOICES, attrs={'class': 'form-control', 'style': 'color: black'}),
       'species': forms.TextInput(attrs={'class': 'form-control'}),
       'common_name': forms.TextInput(attrs={'class': 'form-control'}),
       'name': forms.TextInput(attrs={'class': 'form-control'}),
