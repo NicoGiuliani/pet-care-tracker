@@ -42,9 +42,8 @@ def add(request):
   })
 
 
-def delete(request):
+def delete(request, id):
   if request.method == 'POST':
-    id = request.POST['id']
     animal = Animal.objects.get(pk=id)
     animal.delete()
   return HttpResponseRedirect(reverse('index'))
