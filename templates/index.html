@@ -2,20 +2,16 @@
 <div class="card border-dark mb-3">
   <div class="card-header">{{ animal.classification }}</div>
   <div class="card-body">
-    <h4 class="card-title">{{ animal.name | capfirst }}</h4>
+    <h4 style="display:inline-block"class="card-title">{{ animal.name | capfirst }}</h4>
     <p class="card-title">
       {{ animal.common_name | capfirst }}
       <i>({{ animal.species | capfirst }})</i>
     </p>
-    <form action="edit" method="POST" class="me-1" style="float:left">
+    <a style="display:block;float:right" class="btn btn-warning" href="{% url 'edit' animal.id %}">Edit</a>
+    <form style="display:block;float:right" action="delete" method="POST" class="me-1">
       {% csrf_token %}
       <input type="hidden" name="id" value={{ animal.id }}></input>
-      <input type="submit" value="Edit"></input>
-    </form>
-    <form action="delete" method="POST" class="me-1" style="float:left">
-      {% csrf_token %}
-      <input type="hidden" name="id" value={{ animal.id }}></input>
-      <input type="submit" value="Delete"></input>
+      <input class="btn btn-primary" type="submit" value="Delete"></input>
     </form>
   </div>
 </div>

@@ -49,5 +49,19 @@ def delete(request):
     animal.delete()
   return HttpResponseRedirect(reverse('index'))
 
-def edit(request):
-  pass
+def edit(request, id):
+  if request.method == 'POST':
+    animal = Animal.objects.get(pk=id)
+    form = AnimalForm(request.POST, instance=animal)
+    if form.is_valid():
+      form.save()
+      return render(request, 'edit.html', {
+        'form': form,
+        'success': True
+      })
+  else: 
+    animal = Animal.objects.get(pk=id)
+    form = AnimalForm(request.POST, instance=animal)
+  return render(request, 'edit.html', {
+    'form': form
+  })
