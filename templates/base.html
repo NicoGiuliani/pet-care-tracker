@@ -3,58 +3,54 @@
 <html lang="en">
   <head>
     <title>Animal Care Tracker</title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min2.css' %}" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
   </head>
-  <body>
-    <div class="row">
-      <div class="col-12">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
-          <div class="container-fluid ms-4 me-4 px-0">
-            <a class="navbar-brand" href="{% url 'index' %}">
-              <i class="fa-solid fa-frog fa-lg"></i>
-              Animal Care Tracker
-            </a>
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarColor03"
-              aria-controls="navbarColor03"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="navbar-toggler-icon"></span>
+  <body class="d-flex flex-column min-vh-100">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+      <div class="container-fluid ms-4 me-4 px-0">
+        <a class="navbar-brand" href="{% url 'index' %}">
+          <i class="fa-solid fa-frog fa-lg"></i>
+          Animal Care Tracker
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarColor03"
+          aria-controls="navbarColor03"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor03">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'add' %}"
+                ><i class="fa-solid fa-plus fa-lg"></i> Add</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">Population: {{ animals|length }}</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input
+              class="form-control me-sm-2"
+              type="text"
+              placeholder="Search"
+            />
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">
+              Search
             </button>
-            <div class="collapse navbar-collapse" id="navbarColor03">
-              <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'add' %}"
-                    ><i class="fa-solid fa-plus fa-lg"></i> Add</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link">Population: {{ animals|length }}</a>
-                </li>
-              </ul>
-              <form class="d-flex">
-                <input
-                  class="form-control me-sm-2"
-                  type="text"
-                  placeholder="Search"
-                />
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">
-                  Search
-                </button>
-              </form>
-            </div>
-          </div>
-        </nav>
-        <div class="ms-4 me-4">{% block body %} {% endblock %}</div>
+          </form>
+        </div>
       </div>
-    </div>
+    </nav>
+    <div class="ms-4 me-4">{% block body %} {% endblock %}</div>
   </body>
 </html>
